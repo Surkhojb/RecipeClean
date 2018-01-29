@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivityFragment"
+    tools:showIn="@layout/activity_detail">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <include android:id="@+id/in_detail_cardview_data"
+                layout="@layout/detail_cardview_recipe_data"/>
+
+            <include android:id="@+id/in_detail_cardview_ingredients"
+                layout="@layout/detail_cardview_ingredients"
+                android:layout_below="@+id/in_detail_cardview_data"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include android:id="@+id/in_detail_cardview_instructions"
+                layout="@layout/detail_cardview_instructions"
+                android:layout_below="@id/in_detail_cardview_ingredients"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

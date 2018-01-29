@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RecipeClean</string>
+    <string name="tab_latest">Latest</string>
+    <string name="tab_random">Random</string>
+    <string name="tab_favorite">Favorites</string>
+    <string name="search_title">Search</string>
+
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="recipe_instructions_title">INSTRUCTIONS</string>
+    <string name="recipe_ingredients_title">INGREDIENTS AND MEASURES</string>
+    <string name="recipe_data_title">RECIPE DATA</string>
+    <string name="empty_title">You haven\'t added any favorites yet.</string>
+</resources>

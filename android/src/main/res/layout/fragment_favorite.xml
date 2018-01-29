@@ -1,0 +1,9 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.juanjo.juanjo.clean_boilerplate.ui.fragment.FavoriteFragment">
+
+    <include android:id="@+id/view_content" layout="@layout/recycler_content_fragment"/>
+    <include android:id="@+id/view_empty" layout="@layout/empty_fav_view" android:visibility="gone"/>
+</FrameLayout>

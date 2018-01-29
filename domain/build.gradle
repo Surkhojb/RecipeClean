@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    providedCompile 'com.google.dagger:dagger-compiler:2.4'
+    compile 'com.google.dagger:dagger:2.4'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
+
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
