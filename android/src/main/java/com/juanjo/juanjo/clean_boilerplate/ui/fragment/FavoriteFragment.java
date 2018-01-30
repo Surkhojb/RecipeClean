@@ -53,7 +53,6 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     FavoriteFragmentContract.Presenter presenter;
 
     public FavoriteFragment() {
-        // Required empty public constructor
     }
 
     public static FavoriteFragment newInstance(String param1, String param2) {
@@ -69,7 +68,6 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_favorite, container, false);
         ButterKnife.bind(this,v);
         injectDependencies();
@@ -109,7 +107,7 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
 
     @Override
     public void onCardViewClicked(View v, int position) {
-        startActivity(new Intent(getContext(),DetailActivity.class).putExtra("RECIPE",recipeAdapter.getRecipe(position)));
+        startActivity(new Intent(getContext(),DetailActivity.class).putExtra(DetailActivity.EXTRA_RECIPE,recipeAdapter.getRecipe(position)));
     }
 
     @Override

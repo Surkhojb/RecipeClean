@@ -1,4 +1,4 @@
-package com.juanjo.juanjo.clean_boilerplate.ui.activity;
+package com.juanjo.juanjo.clean_boilerplate.ui.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

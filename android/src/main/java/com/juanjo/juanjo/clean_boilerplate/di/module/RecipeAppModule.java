@@ -84,7 +84,6 @@ public class RecipeAppModule {
         return recipeRepository;
     }
 
-    //TODO: LOCAL DATASOURCE
     @Provides
     @Singleton
     ILocalDataSource provideLocalDataSource(LocalDataSource localDatasource){
@@ -115,11 +114,4 @@ public class RecipeAppModule {
         return database.randomDao();
     }
 
-    /* TODO: PREFERENCESD DATASOURCE
-    @Provides
-    @Singleton
-    ISettingsPreferences providePreferencesManager(){
-        return new PreferencesManager(providePreferences());
-    }
-    */
 }

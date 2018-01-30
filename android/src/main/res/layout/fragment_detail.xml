@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivityFragment"
+    tools:context="com.juanjo.juanjo.clean_boilerplate.ui.fragment.DetailActivityFragment"
     tools:showIn="@layout/activity_detail">
 
     <android.support.v4.widget.NestedScrollView
