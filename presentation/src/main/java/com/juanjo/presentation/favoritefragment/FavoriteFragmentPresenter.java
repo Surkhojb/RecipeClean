@@ -37,6 +37,7 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
 
     @Override
     public void removeFromFavorite(Recipe recipe) {
+        //TODO: Add remove funcionality.
         view.showMessage("Removed");
     }
 

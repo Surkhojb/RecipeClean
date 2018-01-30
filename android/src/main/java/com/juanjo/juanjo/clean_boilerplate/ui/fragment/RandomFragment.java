@@ -105,7 +105,7 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
 
     @Override
     public void onFavClicked(View v, int position) {
-
+        presenter.addToFavorite(recipeAdapter.getRecipe(position));
     }
 
     private void initRecyclerView() {

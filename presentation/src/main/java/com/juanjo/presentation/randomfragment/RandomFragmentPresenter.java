@@ -1,5 +1,6 @@
 package com.juanjo.presentation.randomfragment;
 
+import com.juanjo.juanjo.domain.interactor.AddToFavoritesUseCase;
 import com.juanjo.juanjo.domain.interactor.DefaultObserver;
 import com.juanjo.juanjo.domain.interactor.GetRandomRecipesUseCase;
 import com.juanjo.juanjo.domain.model.RecipeModel;
@@ -9,6 +10,8 @@ import com.juanjo.presentation.base.model.mapper.RecipeTransformer;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Completable;
 
 /**
  * Created by juanj on 26/01/2018.
@@ -22,6 +25,8 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
     RecipeTransformer transformer;
     @Inject
     GetRandomRecipesUseCase getRandom;
+    @Inject
+    AddToFavoritesUseCase addToFavorites;
 
 
     @Inject
@@ -41,7 +46,8 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
 
     @Override
     public void addToFavorite(Recipe recipe) {
-
+        addToFavorites.execute(new AddFavoritesObserver(),
+                AddToFavoritesUseCase.Params.create(transformer.transformToModel(recipe)));
     }
 
     final class GetRandomObserver extends DefaultObserver<List<RecipeModel>> {
@@ -53,6 +59,22 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
         @Override
         public void onComplete() {
             view.showLoading(false);
+        }
+
+        @Override
+        public void onError(Throwable exception) {
+            view.showMessage(exception.getMessage());
+        }
+    }
+    final class AddFavoritesObserver extends DefaultObserver<Completable>{
+        @Override
+        public void onNext(Completable completable) {
+
+        }
+
+        @Override
+        public void onComplete() {
+            view.showMessage("Recipe added.");
         }
 
         @Override
