@@ -1,6 +1,7 @@
 package com.juanjo.juanjo.datasource.local.favorite;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -20,6 +21,9 @@ public interface FavoriteDao {
 
     @Query("SELECT * FROM favorites WHERE id=:id")
     FavoriteVo getFavoriteById(String id);
+
+    @Delete
+    int remove(FavoriteVo favoriteVo);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(FavoriteVo favoriteVo);

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Created by juanj on 24/01/2018.
@@ -28,7 +29,7 @@ public class GetLatestRecipesUseCase extends UseCase<List<RecipeModel>,GetLatest
     }
 
     @Override
-    Observable<List<RecipeModel>> buildUseCaseObservable(GetLatestRecipesUseCase.Params params) {
+    Observable<List<RecipeModel>> buildUseCaseObservable(Params params) {
         return recipeRepository.getLatestRecipes();
     }
 

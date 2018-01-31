@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class RecipeRepository implements IRecipeRepository{
 
@@ -40,5 +41,10 @@ public class RecipeRepository implements IRecipeRepository{
     @Override
     public Completable addFavorite(RecipeModel recipeToAdd) {
         return localDataSource.addToFavorites(recipeToAdd);
+    }
+
+    @Override
+    public Single<Boolean> removeFromFavorites(RecipeModel recipeToRemove) {
+        return localDataSource.removeFavorite(recipeToRemove);
     }
 }

@@ -5,6 +5,7 @@ import com.juanjo.juanjo.domain.executor.ThreadExecutor;
 import com.google.common.base.Preconditions;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -16,7 +17,7 @@ abstract class UseCase<T, Params> extends AbstractUseCase {
         super(threadExecutor, mainThread);
     }
 
-    abstract Observable<T> buildUseCaseObservable(Params params);
+    abstract Observable buildUseCaseObservable(Params params);
 
     public void execute(DefaultObserver observer, Params params) {
         Preconditions.checkNotNull(observer);

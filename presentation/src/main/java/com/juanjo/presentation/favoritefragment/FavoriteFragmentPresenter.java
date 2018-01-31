@@ -2,6 +2,7 @@ package com.juanjo.presentation.favoritefragment;
 
 import com.juanjo.juanjo.domain.interactor.DefaultObserver;
 import com.juanjo.juanjo.domain.interactor.GetFavoriteRecipesUseCase;
+import com.juanjo.juanjo.domain.interactor.RemoveToFavoritesUseCase;
 import com.juanjo.juanjo.domain.model.RecipeModel;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.base.model.mapper.RecipeTransformer;
@@ -23,6 +24,9 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
     GetFavoriteRecipesUseCase getFavorites;
 
     @Inject
+    RemoveToFavoritesUseCase removeFavorite;
+
+    @Inject
     RecipeTransformer transformer;
 
     @Inject
@@ -38,7 +42,8 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
     @Override
     public void removeFromFavorite(Recipe recipe) {
         //TODO: Add remove funcionality.
-        view.showMessage("Removed");
+        removeFavorite.execute(new RemoveFavoriteObserver(),
+                RemoveToFavoritesUseCase.Params.create(transformer.transformToModel(recipe)));
     }
 
     final class GetFavoriteObserver extends DefaultObserver<List<RecipeModel>>{
@@ -61,4 +66,24 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
             view.showMessage(exception.getMessage());
         }
     }
+    final class RemoveFavoriteObserver extends DefaultObserver<Boolean>{
+        @Override
+        public void onNext(Boolean aBoolean) {
+            if(aBoolean)
+                view.showMessage("Recipe removed");
+            else
+                view.showMessage("Error removing recipe");
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+
+        @Override
+        public void onError(Throwable exception) {
+            view.showMessage(exception.getMessage());
+        }
+    }
+
 }

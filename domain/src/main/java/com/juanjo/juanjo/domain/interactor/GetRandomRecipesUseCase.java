@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
+
 /**
  * Created by juanj on 24/01/2018.
  */
@@ -28,7 +29,7 @@ public class GetRandomRecipesUseCase extends UseCase<List<RecipeModel>,GetRandom
     }
 
     @Override
-    Observable<List<RecipeModel>> buildUseCaseObservable(GetRandomRecipesUseCase.Params params) {
+    Observable<List<RecipeModel>> buildUseCaseObservable(Params params) {
         return recipeRepository.getRandomRecipes();
     }
 

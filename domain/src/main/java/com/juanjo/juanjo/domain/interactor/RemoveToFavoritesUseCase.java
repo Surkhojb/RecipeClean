@@ -7,7 +7,6 @@ import com.juanjo.juanjo.domain.repository.IRecipeRepository;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -15,12 +14,12 @@ import io.reactivex.Single;
  * Created by juanj on 24/01/2018.
  */
 
-public class AddToFavoritesUseCase extends UseCase<Completable,AddToFavoritesUseCase.Params> {
+public class RemoveToFavoritesUseCase extends UseCase<Boolean,RemoveToFavoritesUseCase.Params> {
 
     IRecipeRepository recipeRepository;
 
     @Inject
-    public AddToFavoritesUseCase(ThreadExecutor threadExecutor, MainThread mainThread
+    public RemoveToFavoritesUseCase(ThreadExecutor threadExecutor, MainThread mainThread
             , IRecipeRepository repository) {
         super(threadExecutor, mainThread);
         this.recipeRepository = repository;
@@ -28,8 +27,8 @@ public class AddToFavoritesUseCase extends UseCase<Completable,AddToFavoritesUse
     }
 
     @Override
-    Observable<Completable> buildUseCaseObservable(Params params) {
-        return recipeRepository.addFavorite(params.model).toObservable();
+    Observable<Boolean> buildUseCaseObservable(Params params) {
+        return recipeRepository.removeFromFavorites(params.model).toObservable();
     }
 
     public static final class Params {
@@ -41,12 +40,12 @@ public class AddToFavoritesUseCase extends UseCase<Completable,AddToFavoritesUse
             this.model = model;
         }
 
-        public static AddToFavoritesUseCase.Params create(){
-            return new AddToFavoritesUseCase.Params();
+        public static RemoveToFavoritesUseCase.Params create(){
+            return new RemoveToFavoritesUseCase.Params();
         }
 
-        public static AddToFavoritesUseCase.Params create(RecipeModel model){
-            return new AddToFavoritesUseCase.Params(model);
+        public static RemoveToFavoritesUseCase.Params create(RecipeModel model){
+            return new RemoveToFavoritesUseCase.Params(model);
         }
 
     }

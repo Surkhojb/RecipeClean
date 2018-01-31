@@ -10,11 +10,13 @@ import com.juanjo.juanjo.domain.model.RecipeModel;
 import com.juanjo.juanjo.repository.local.ILocalDataSource;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Created by juanj on 29/01/2018.
@@ -58,5 +60,10 @@ public class LocalDataSource implements ILocalDataSource {
     @Override
     public Completable addToFavorites(RecipeModel model) {
         return Completable.fromCallable(() -> favoriteDao.insert(favoriteTransformer.mapToFavorite(model)));
+    }
+
+    @Override
+    public Single<Boolean> removeFavorite(RecipeModel model) {
+        return Single.fromCallable(() -> favoriteDao.remove(favoriteTransformer.mapToFavorite(model)) > 0);
     }
 }

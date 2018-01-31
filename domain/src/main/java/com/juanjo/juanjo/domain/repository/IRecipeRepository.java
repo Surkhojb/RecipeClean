@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Created by juanj on 24/01/2018.
@@ -16,4 +17,5 @@ public interface IRecipeRepository {
     Observable<List<RecipeModel>> getRandomRecipes();
     Observable<List<RecipeModel>> getFavorites();
     Completable addFavorite(RecipeModel recipeToAdd);
+    Single<Boolean> removeFromFavorites(RecipeModel recipeToRemove);
 }

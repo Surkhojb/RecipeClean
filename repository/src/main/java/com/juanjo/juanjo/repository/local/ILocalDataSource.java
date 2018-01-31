@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 
 /**
@@ -17,4 +18,5 @@ public interface ILocalDataSource {
     Observable<List<RecipeModel>> getRandomRecipes();
     Observable<List<RecipeModel>> getFavoriteRecipes();
     Completable addToFavorites(RecipeModel model);
+    Single<Boolean> removeFavorite(RecipeModel model);
 }
