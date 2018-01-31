@@ -77,7 +77,7 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
 
         @Override
         public void onComplete() {
-
+            view.refreshData(true);
         }
 
         @Override

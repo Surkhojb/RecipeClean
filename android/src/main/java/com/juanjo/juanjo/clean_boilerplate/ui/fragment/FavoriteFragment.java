@@ -94,6 +94,12 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     }
 
     @Override
+    public void refreshData(boolean status) {
+        if(status)
+            presenter.loadRecipes();
+    }
+
+    @Override
     public void showMessage(String message) {
         Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
 

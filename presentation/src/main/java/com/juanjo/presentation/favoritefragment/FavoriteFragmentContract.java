@@ -12,6 +12,7 @@ public interface FavoriteFragmentContract {
     interface View{
         void showLoading(boolean status);
         void showListOfRecipes(List<Recipe> recipes);
+        void refreshData(boolean status);
         void showMessage(String message);
         void showEmptyView();
 
