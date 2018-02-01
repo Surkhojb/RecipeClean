@@ -159,7 +159,7 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
                 .inject(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onRefreshFavorites(OnRefreshFavorite refresh){
         presenter.loadRecipes();
     }
