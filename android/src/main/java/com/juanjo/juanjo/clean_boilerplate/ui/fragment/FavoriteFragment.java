@@ -22,8 +22,13 @@ import com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivity;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeAdapter;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeClickListener;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeFavoritesAdapter;
+import com.juanjo.juanjo.domain.model.event.OnRefreshFavorite;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.favoritefragment.FavoriteFragmentContract;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -52,6 +57,9 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     @Inject
     FavoriteFragmentContract.Presenter presenter;
 
+    @Inject
+    EventBus eventBus;
+
     public FavoriteFragment() {
     }
 
@@ -74,6 +82,18 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
         initRecyclerView();
         presenter.loadRecipes();
         return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        eventBus.register(this);
+    }
+
+    @Override
+    public void onStop() {
+        eventBus.unregister(this);
+        super.onStop();
     }
 
     @Override
@@ -121,7 +141,6 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
         presenter.removeFromFavorite(recipeAdapter.getRecipe(position));
     }
 
-
     void initRecyclerView() {
         listOfRecipes.setHasFixedSize(true);
         listOfRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -138,5 +157,10 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
                 .favoriteFragmentModule(new FavoriteFragmentModule(this))
                 .build()
                 .inject(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onRefreshFavorites(OnRefreshFavorite refresh){
+        presenter.loadRecipes();
     }
 }

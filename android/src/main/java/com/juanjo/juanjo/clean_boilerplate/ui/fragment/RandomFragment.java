@@ -23,9 +23,12 @@ import com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivity;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeAdapter;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeClickListener;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeRandomAdapter;
+import com.juanjo.juanjo.domain.model.event.OnRefreshFavorite;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.randomfragment.RandomFragmentContract;
 import com.juanjo.presentation.randomfragment.RandomFragmentPresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -50,6 +53,8 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
 
     @Inject
     RandomFragmentContract.Presenter presenter;
+    @Inject
+    EventBus eventBus;
 
     RecipeRandomAdapter recipeAdapter;
 
@@ -108,6 +113,16 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
         presenter.addToFavorite(recipeAdapter.getRecipe(position));
     }
 
+    @Override
+    public void onRefresh() {
+        presenter.loadOneMore();
+    }
+
+    @Override
+    public void eventRefresh() {
+        eventBus.post(new OnRefreshFavorite());
+    }
+
     private void initRecyclerView() {
         listOfRecipes.setHasFixedSize(true);
         listOfRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -125,10 +140,5 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
                 .randomFragmentModule(new RandomFragmentModule(this))
                 .build()
                 .inject(this);
-    }
-
-    @Override
-    public void onRefresh() {
-        presenter.loadOneMore();
     }
 }

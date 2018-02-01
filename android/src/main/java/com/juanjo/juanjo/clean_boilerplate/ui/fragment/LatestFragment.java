@@ -21,8 +21,13 @@ import com.juanjo.juanjo.clean_boilerplate.di.module.LatestFragmentModule;
 import com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivity;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeClickListener;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeAdapter;
+import com.juanjo.juanjo.domain.model.event.OnRefreshFavorite;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.latestfragment.LatestFragmentContract;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,6 +49,9 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
 
     @Inject
     LatestFragmentContract.Presenter presenter;
+
+    @Inject
+    EventBus eventBus;
 
     RecipeAdapter recipeAdapter;
 
@@ -94,6 +102,11 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
             loadingIndicator.setVisibility(View.GONE);
             listOfRecipes.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void eventRefresh(){
+        eventBus.post(new OnRefreshFavorite());
     }
 
     void initRecyclerView() {

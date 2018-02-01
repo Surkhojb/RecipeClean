@@ -69,12 +69,12 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
     final class AddFavoritesObserver extends DefaultObserver<Completable>{
         @Override
         public void onNext(Completable completable) {
-
+            view.showMessage("Recipe added.");
         }
 
         @Override
         public void onComplete() {
-            view.showMessage("Recipe added.");
+            view.eventRefresh();
         }
 
         @Override

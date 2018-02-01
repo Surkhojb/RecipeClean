@@ -69,7 +69,7 @@ public class LatestFragmentPresenter implements LatestFragmentContract.Presenter
 
         @Override
         public void onComplete() {
-            view.showLoading(false);
+            view.eventRefresh();
         }
 
         @Override

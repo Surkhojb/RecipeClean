@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        injectDependencies();
         initView();
     }
 
@@ -53,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return true;
-    }
-
-    private void injectDependencies() {
-
     }
 
     private void initView() {

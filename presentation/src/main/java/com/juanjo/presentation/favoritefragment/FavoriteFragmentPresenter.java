@@ -36,6 +36,7 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
 
     @Override
     public void loadRecipes() {
+        view.showLoading(true);
         getFavorites.execute(new GetFavoriteObserver(),GetFavoriteRecipesUseCase.Params.create());
     }
 
@@ -66,6 +67,7 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
             view.showMessage(exception.getMessage());
         }
     }
+
     final class RemoveFavoriteObserver extends DefaultObserver<Boolean>{
         @Override
         public void onNext(Boolean aBoolean) {
