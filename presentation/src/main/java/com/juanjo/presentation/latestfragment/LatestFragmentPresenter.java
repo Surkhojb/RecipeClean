@@ -45,21 +45,25 @@ public class LatestFragmentPresenter implements LatestFragmentContract.Presenter
     }
 
     @Override public void onError(Throwable exception) {
-      view.showMessage(exception.getMessage());
+      view.showErrorMessage(exception.getMessage());
+    }
+
+    @Override
+    public void onTerminate() {
+      view.showLoading(false);
     }
   }
 
   final class AddFavoritesObserver extends DefaultObserver<Completable> {
-    @Override public void onNext(Completable completable) {
-      view.showMessage("Recipe added.");
-    }
+    @Override public void onNext(Completable completable){ }
 
     @Override public void onComplete() {
+      view.showMessage("Recipe added.");
       view.eventRefresh();
     }
 
     @Override public void onError(Throwable exception) {
-      view.showMessage(exception.getMessage());
+      view.showErrorMessage(exception.getMessage());
     }
 
     @Override public void onTerminate() {

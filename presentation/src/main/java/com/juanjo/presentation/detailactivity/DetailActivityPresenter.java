@@ -45,7 +45,7 @@ public class DetailActivityPresenter implements DetailActivityContract.Presenter
 
         @Override
         public void onError(Throwable exception) {
-            view.showMessage(exception.getMessage());
+            view.showErrorMessage(exception.getMessage());
         }
     }
 }

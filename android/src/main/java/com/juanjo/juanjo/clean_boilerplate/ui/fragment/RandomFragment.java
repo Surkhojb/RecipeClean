@@ -37,6 +37,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,7 +99,12 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        Toasty.success(getContext(),message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Toasty.error(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
     }
 
     @Override

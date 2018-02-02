@@ -6,6 +6,7 @@ import com.juanjo.juanjo.domain.interactor.GetRandomRecipesUseCase;
 import com.juanjo.juanjo.domain.model.RecipeModel;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.base.model.mapper.RecipeTransformer;
+import com.juanjo.presentation.latestfragment.LatestFragmentPresenter;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
     @Inject
     GetRandomRecipesUseCase getRandom;
     @Inject
-    AddToFavoritesUseCase addToFavorites;
+    AddToFavoritesUseCase addFavorites;
 
 
     @Inject
@@ -46,7 +47,8 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
 
     @Override
     public void addToFavorite(Recipe recipe) {
-        addToFavorites.execute(new AddFavoritesObserver(),
+        view.showLoading(true);
+        addFavorites.execute(new AddFavoritesObserver(),
                 AddToFavoritesUseCase.Params.create(transformer.transformToModel(recipe)));
     }
 
@@ -63,23 +65,29 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
 
         @Override
         public void onError(Throwable exception) {
-            view.showMessage(exception.getMessage());
-        }
-    }
-    final class AddFavoritesObserver extends DefaultObserver<Completable>{
-        @Override
-        public void onNext(Completable completable) {
-            view.showMessage("Recipe added.");
+            view.showErrorMessage(exception.getMessage());
         }
 
         @Override
-        public void onComplete() {
+        public void onTerminate() {
+            view.showLoading(false);
+        }
+    }
+    final class AddFavoritesObserver extends DefaultObserver<Completable> {
+        @Override public void onNext(Completable completable) {
+        }
+
+        @Override public void onComplete() {
+            view.showMessage("Recipe added.");
             view.eventRefresh();
         }
 
-        @Override
-        public void onError(Throwable exception) {
-            view.showMessage(exception.getMessage());
+        @Override public void onError(Throwable exception) {
+            view.showErrorMessage(exception.getMessage());
+        }
+
+        @Override public void onTerminate() {
+            view.showLoading(false);
         }
     }
 }

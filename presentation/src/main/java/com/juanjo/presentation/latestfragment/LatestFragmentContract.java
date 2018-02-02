@@ -13,6 +13,7 @@ public interface LatestFragmentContract {
         void showLoading(boolean status);
         void showListOfRecipes(List<Recipe> recipes);
         void showMessage(String message);
+        void showErrorMessage(String errorMessage);
         void eventRefresh();
     }
 

@@ -35,6 +35,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,17 +73,6 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
     }
 
     @Override
-    public void onCardViewClicked(View v, int position) {
-        startActivity(new Intent(getContext(),DetailActivity.class).putExtra("RECIPE",recipeAdapter.getRecipe(position)));
-    }
-
-    @Override
-    public void onFavClicked(View v, int position) {
-        Toast.makeText(getContext(),"Recipe faved "+recipeAdapter.getRecipe(position).getName(),Toast.LENGTH_SHORT).show();
-        presenter.addToFavorite(recipeAdapter.getRecipe(position));
-    }
-
-    @Override
     public void showListOfRecipes(List<Recipe> recipes) {
         if (!recipes.isEmpty())
             recipeAdapter.refreshData(recipes);
@@ -90,7 +80,12 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        Toasty.success(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Toasty.error(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -102,6 +97,16 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
             loadingIndicator.setVisibility(View.GONE);
             listOfRecipes.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onCardViewClicked(View v, int position) {
+        startActivity(new Intent(getContext(),DetailActivity.class).putExtra("RECIPE",recipeAdapter.getRecipe(position)));
+    }
+
+    @Override
+    public void onFavClicked(View v, int position) {
+        presenter.addToFavorite(recipeAdapter.getRecipe(position));
     }
 
     @Override

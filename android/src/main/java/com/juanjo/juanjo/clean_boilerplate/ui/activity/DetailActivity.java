@@ -28,6 +28,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 public class DetailActivity extends AppCompatActivity implements DetailActivityContract.View {
     public static final String EXTRA_RECIPE = "RECIPE";
@@ -66,7 +67,12 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+        Toasty.success(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Toasty.error(getApplicationContext(),errorMessage,Toast.LENGTH_SHORT).show();
     }
 
     private void injectDependencies() {

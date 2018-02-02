@@ -36,6 +36,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -121,8 +122,13 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(),message,Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Toasty.error(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override

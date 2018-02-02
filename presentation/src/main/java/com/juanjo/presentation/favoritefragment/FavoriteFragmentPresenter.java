@@ -64,7 +64,12 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
 
         @Override
         public void onError(Throwable exception) {
-            view.showMessage(exception.getMessage());
+            view.showErrorMessage(exception.getMessage());
+        }
+
+        @Override
+        public void onTerminate() {
+            view.showLoading(false);
         }
     }
 
@@ -74,7 +79,7 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
             if(aBoolean)
                 view.showMessage("Recipe removed");
             else
-                view.showMessage("Error removing recipe");
+                view.showErrorMessage("Error removing recipe");
         }
 
         @Override
@@ -84,7 +89,12 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
 
         @Override
         public void onError(Throwable exception) {
-            view.showMessage(exception.getMessage());
+            view.showErrorMessage(exception.getMessage());
+        }
+
+        @Override
+        public void onTerminate() {
+            view.showLoading(false);
         }
     }
 
