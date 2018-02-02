@@ -3,6 +3,7 @@ package com.juanjo.juanjo.clean_boilerplate.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +54,8 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     @BindView(R.id.view_empty)
     View viewEmpty;
 
+    AppBarLayout appBarLayout;
+
     RecipeFavoritesAdapter recipeAdapter;
 
     @Inject
@@ -78,6 +81,7 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_favorite, container, false);
+        appBarLayout = (AppBarLayout) getActivity().findViewById(R.id.appbar);
         ButterKnife.bind(this,v);
         injectDependencies();
         initRecyclerView();
@@ -133,6 +137,7 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
 
     @Override
     public void showEmptyView() {
+        appBarLayout.setExpanded(true,true);
         viewContent.setVisibility(GONE);
         viewEmpty.setVisibility(VISIBLE);
     }
