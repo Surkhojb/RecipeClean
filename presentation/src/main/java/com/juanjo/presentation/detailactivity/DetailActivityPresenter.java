@@ -41,6 +41,7 @@ public class DetailActivityPresenter implements DetailActivityContract.Presenter
         @Override
         public void onComplete() {
             view.showMessage("Recipe added.");
+            view.eventRefresh();
         }
 
         @Override

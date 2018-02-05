@@ -11,6 +11,7 @@ public interface DetailActivityContract {
     interface View{
         void showMessage(String message);
         void showErrorMessage(String errorMessage);
+        void eventRefresh();
     }
 
     interface Presenter{

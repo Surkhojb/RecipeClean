@@ -18,8 +18,11 @@ import com.juanjo.juanjo.clean_boilerplate.R;
 import com.juanjo.juanjo.clean_boilerplate.RecipeApp;
 import com.juanjo.juanjo.clean_boilerplate.di.component.DaggerDetailActivityComponent;
 import com.juanjo.juanjo.clean_boilerplate.di.module.DetailActivityModule;
+import com.juanjo.juanjo.domain.model.event.OnRefreshFavorite;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.detailactivity.DetailActivityContract;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -51,6 +54,9 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
 
     @Inject
     DetailActivityContract.Presenter presenter;
+
+    @Inject
+    EventBus eventBus;
 
     Recipe recipe;
 
@@ -87,6 +93,11 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
     @Override
     public void showErrorMessage(String errorMessage) {
         Toasty.error(getApplicationContext(),errorMessage,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void eventRefresh() {
+        eventBus.post(new OnRefreshFavorite());
     }
 
     private void injectDependencies() {
