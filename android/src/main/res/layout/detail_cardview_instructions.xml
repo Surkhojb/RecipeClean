@@ -28,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/detail_text_instructions"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"/>
+                android:textSize="14sp"
+                android:padding="4dp"
+                android:textColor="@android:color/black"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>

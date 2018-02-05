@@ -1,6 +1,8 @@
 package com.juanjo.juanjo.clean_boilerplate.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,9 +17,7 @@ import com.bumptech.glide.Glide;
 import com.juanjo.juanjo.clean_boilerplate.R;
 import com.juanjo.juanjo.clean_boilerplate.RecipeApp;
 import com.juanjo.juanjo.clean_boilerplate.di.component.DaggerDetailActivityComponent;
-import com.juanjo.juanjo.clean_boilerplate.di.component.DaggerFavoriteFragmentComponent;
 import com.juanjo.juanjo.clean_boilerplate.di.module.DetailActivityModule;
-import com.juanjo.juanjo.clean_boilerplate.di.module.FavoriteFragmentModule;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.detailactivity.DetailActivityContract;
 
@@ -44,6 +44,10 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
     TextView tvIngredients;
     @BindView(R.id.detail_text_data)
     TextView tvData;
+    @BindView(R.id.detail_youtube_link)
+    ImageView imYoutubeLink;
+    @BindView(R.id.detail_browser_link)
+    ImageView imBrowserLink;
 
     @Inject
     DetailActivityContract.Presenter presenter;
@@ -63,6 +67,16 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
     @OnClick(R.id.fab_favorite)
     public void onFabFavoriteClick(View v){
         presenter.addToFavorites(recipe);
+    }
+
+    @OnClick(R.id.detail_youtube_link)
+    public void onYoutubeClick(View v){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(recipe.getYoutubeLink())));
+    }
+
+    @OnClick(R.id.detail_browser_link)
+    public void onBrowserClick(View v){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(recipe.getWebLink())));
     }
 
     @Override
@@ -89,6 +103,7 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
         toolbar.setTitle(r.getName());
         Glide.with(this).load(r.getImgThumb()).into(imgRecipe);
         tvData.setText(loadRecipeData(r));
+        showRecipeLinks(r);
         tvInstructions.setText(r.getInstruction());
         tvIngredients.setText(loadIngredientsAndMeasures(r.getIngredients(),r.getMeasures()));
 
@@ -108,8 +123,19 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
         String data = "";
         data += String.format("Country: %s",r.getCountry()) + "\n";
         data += String.format("Category: %s",r.getCategory())+ "\n";
-        data += String.format("YouTube: %s",r.getYoutubeLink())+ "\n";
-        data += String.format("Weblink: %s",r.getWebLink());
         return data;
+    }
+
+    void showRecipeLinks(Recipe r){
+        if(!r.getYoutubeLink().equals("-") && !r.getWebLink().equals("-")){
+            imYoutubeLink.setVisibility(View.VISIBLE);
+            imBrowserLink.setVisibility(View.VISIBLE);
+        }else if(!r.getYoutubeLink().equals("-")){
+            imYoutubeLink.setVisibility(View.VISIBLE);
+        }else if(!r.getWebLink().equals("-")){
+            imBrowserLink.setVisibility(View.VISIBLE);
+        }
+
+
     }
 }

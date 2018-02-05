@@ -55,6 +55,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/appBarLayout"
         app:layout_anchorGravity="bottom|right|end"
-        app:srcCompat="@drawable/fav_click_selector" />
+        app:srcCompat="@drawable/fav_click_fab_selector" />
 
 </android.support.design.widget.CoordinatorLayout>

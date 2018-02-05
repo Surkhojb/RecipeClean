@@ -28,9 +28,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/detail_text_data"
-                android:textStyle="bold"
                 android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"/>
+                android:padding="4dp"
+                android:textColor="@android:color/black"/>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:padding="4dp"
+               android:orientation="horizontal">
+               <ImageView
+                   android:id="@+id/detail_youtube_link"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_youtube_48dp"
+                   android:visibility="gone"/>
+               <ImageView
+                   android:id="@+id/detail_browser_link"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_chrome_48dp"
+                   android:visibility="gone"/>
+           </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>
