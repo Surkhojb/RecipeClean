@@ -1,7 +1,7 @@
 # RecipeClean
 Example of an app with the purpose of applying clean architecture.
 
-#API REST used:
+# API REST used:
 - The meal db -> An open source database of Recipes from around the world. (http://www.themealdb.com)
 
 # Dependencies used:
