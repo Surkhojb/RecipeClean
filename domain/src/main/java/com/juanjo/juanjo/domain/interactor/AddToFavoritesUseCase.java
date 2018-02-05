@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 /**
  * Created by juanj on 24/01/2018.

@@ -15,18 +15,14 @@ import android.widget.Toast;
 
 import com.juanjo.juanjo.clean_boilerplate.R;
 import com.juanjo.juanjo.clean_boilerplate.RecipeApp;
-import com.juanjo.juanjo.clean_boilerplate.di.component.DaggerLatestFragmentComponent;
 import com.juanjo.juanjo.clean_boilerplate.di.component.DaggerRandomFragmentComponent;
-import com.juanjo.juanjo.clean_boilerplate.di.module.LatestFragmentModule;
 import com.juanjo.juanjo.clean_boilerplate.di.module.RandomFragmentModule;
 import com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivity;
-import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeAdapter;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeClickListener;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeRandomAdapter;
 import com.juanjo.juanjo.domain.model.event.OnRefreshFavorite;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.randomfragment.RandomFragmentContract;
-import com.juanjo.presentation.randomfragment.RandomFragmentPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,9 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class RandomFragment extends Fragment implements RandomFragmentContract.View,RecipeClickListener,
         SwipeRefreshLayout.OnRefreshListener{
 
@@ -61,14 +55,12 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
 
 
     public RandomFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_random, container, false);
         ButterKnife.bind(this,v);
         injectDependencies();

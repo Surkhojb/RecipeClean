@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -26,7 +24,6 @@ import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.latestfragment.LatestFragmentContract;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -34,12 +31,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class LatestFragment extends Fragment implements LatestFragmentContract.View,RecipeClickListener {
 
 
@@ -57,13 +51,11 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
     RecipeAdapter recipeAdapter;
 
     public LatestFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_latest, container, false);
         ButterKnife.bind(this, v);
         initRecyclerView();

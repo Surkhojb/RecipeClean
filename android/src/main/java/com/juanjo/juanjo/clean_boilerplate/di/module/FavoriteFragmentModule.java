@@ -2,11 +2,8 @@ package com.juanjo.juanjo.clean_boilerplate.di.module;
 
 import com.juanjo.juanjo.clean_boilerplate.di.scope.PerFragment;
 import com.juanjo.juanjo.clean_boilerplate.ui.fragment.FavoriteFragment;
-import com.juanjo.juanjo.clean_boilerplate.ui.fragment.LatestFragment;
 import com.juanjo.presentation.favoritefragment.FavoriteFragmentContract;
 import com.juanjo.presentation.favoritefragment.FavoriteFragmentPresenter;
-import com.juanjo.presentation.latestfragment.LatestFragmentContract;
-import com.juanjo.presentation.latestfragment.LatestFragmentPresenter;
 
 import dagger.Module;
 import dagger.Provides;

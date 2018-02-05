@@ -10,7 +10,6 @@ import com.juanjo.juanjo.domain.model.RecipeModel;
 import com.juanjo.juanjo.repository.local.ILocalDataSource;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 

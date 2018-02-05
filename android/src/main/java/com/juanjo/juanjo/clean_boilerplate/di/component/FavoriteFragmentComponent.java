@@ -1,10 +1,8 @@
 package com.juanjo.juanjo.clean_boilerplate.di.component;
 
 import com.juanjo.juanjo.clean_boilerplate.di.module.FavoriteFragmentModule;
-import com.juanjo.juanjo.clean_boilerplate.di.module.LatestFragmentModule;
 import com.juanjo.juanjo.clean_boilerplate.di.scope.PerFragment;
 import com.juanjo.juanjo.clean_boilerplate.ui.fragment.FavoriteFragment;
-import com.juanjo.juanjo.clean_boilerplate.ui.fragment.LatestFragment;
 
 import dagger.Component;
 

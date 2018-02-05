@@ -1,6 +1,5 @@
 package com.juanjo.juanjo.clean_boilerplate.di.component;
 
-import com.juanjo.juanjo.clean_boilerplate.RecipeApp;
 import com.juanjo.juanjo.clean_boilerplate.di.module.RandomFragmentModule;
 import com.juanjo.juanjo.clean_boilerplate.di.scope.PerFragment;
 import com.juanjo.juanjo.clean_boilerplate.ui.fragment.RandomFragment;

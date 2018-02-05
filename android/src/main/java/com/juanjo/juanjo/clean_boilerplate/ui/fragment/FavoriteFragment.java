@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -18,9 +17,7 @@ import com.juanjo.juanjo.clean_boilerplate.R;
 import com.juanjo.juanjo.clean_boilerplate.RecipeApp;
 import com.juanjo.juanjo.clean_boilerplate.di.component.DaggerFavoriteFragmentComponent;
 import com.juanjo.juanjo.clean_boilerplate.di.module.FavoriteFragmentModule;
-import com.juanjo.juanjo.clean_boilerplate.di.module.LatestFragmentModule;
 import com.juanjo.juanjo.clean_boilerplate.ui.activity.DetailActivity;
-import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeAdapter;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeClickListener;
 import com.juanjo.juanjo.clean_boilerplate.ui.adapter.RecipeFavoritesAdapter;
 import com.juanjo.juanjo.domain.model.event.OnRefreshFavorite;

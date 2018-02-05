@@ -6,7 +6,6 @@ import com.juanjo.juanjo.clean_boilerplate.di.module.RecipeAppModule;
 import com.juanjo.juanjo.domain.executor.MainThread;
 import com.juanjo.juanjo.domain.executor.ThreadExecutor;
 import com.juanjo.juanjo.domain.repository.IRecipeRepository;
-import com.juanjo.juanjo.repository.RecipeRepository;
 
 import org.greenrobot.eventbus.EventBus;
 

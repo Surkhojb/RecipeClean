@@ -6,7 +6,6 @@ import com.juanjo.juanjo.domain.interactor.GetRandomRecipesUseCase;
 import com.juanjo.juanjo.domain.model.RecipeModel;
 import com.juanjo.presentation.base.model.Recipe;
 import com.juanjo.presentation.base.model.mapper.RecipeTransformer;
-import com.juanjo.presentation.latestfragment.LatestFragmentPresenter;
 
 import java.util.List;
 

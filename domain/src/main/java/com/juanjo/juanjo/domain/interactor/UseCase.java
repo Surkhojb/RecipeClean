@@ -5,7 +5,6 @@ import com.juanjo.juanjo.domain.executor.ThreadExecutor;
 import com.google.common.base.Preconditions;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 /**
