@@ -27,4 +27,12 @@ public class LocalRecipeTransformer {
 
         return list;
     }
+
+    public List<RecipeLatestVo> transformFromModel(List<RecipeModel> models){
+        List<RecipeLatestVo> list = new ArrayList<>();
+        for(RecipeModel m : models)
+            list.add(mapper.inverseMap(m));
+
+        return list;
+    }
 }

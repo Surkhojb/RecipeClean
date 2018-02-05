@@ -28,4 +28,12 @@ public class LocalRandomTransformer {
 
         return list;
     }
+
+    public List<RecipeRandomVo> transformFromModel(List<RecipeModel> models){
+        List<RecipeRandomVo> list = new ArrayList<>();
+        for(RecipeModel m : models)
+            list.add(mapper.inverseMap(m));
+
+        return list;
+    }
 }

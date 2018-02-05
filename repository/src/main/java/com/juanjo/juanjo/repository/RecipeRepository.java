@@ -20,17 +20,29 @@ public class RecipeRepository implements IRecipeRepository{
     @Inject
     ILocalDataSource localDataSource;
 
+    Observable<List<RecipeModel>> dbResults;
+    Observable<List<RecipeModel>> cloudResults;
+
     @Inject
     public RecipeRepository (){}
 
     @Override
     public Observable<List<RecipeModel>> getLatestRecipes() {
-        return cloudDataSource.getLatestRecipes();
+        dbResults = localDataSource.getLatestRecipes();
+        cloudResults = cloudDataSource.getLatestRecipes()
+                .doOnNext(models -> localDataSource.saveLatest(models));
+
+        return Observable.concat(dbResults,cloudResults);
     }
 
     @Override
     public Observable<List<RecipeModel>> getRandomRecipes() {
-        return cloudDataSource.getRandomRecipes();
+
+        dbResults = localDataSource.getRandomRecipes();
+        cloudResults = cloudDataSource.getRandomRecipes()
+                .doOnNext(models -> localDataSource.saveRandom(models));
+
+        return Observable.concat(dbResults,cloudResults);
     }
 
     @Override

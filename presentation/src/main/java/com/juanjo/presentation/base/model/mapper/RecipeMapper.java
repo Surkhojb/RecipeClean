@@ -12,6 +12,7 @@ public class RecipeMapper implements Mapper<Recipe,RecipeModel> {
     private  final static String NULL_FIELD = "null";
     private final static String EMPTY_FIELD = "";
     private final static String NOT_FIELD = "-";
+    private final static String HTPP_FIELD = "http:";
 
     @Inject
     public RecipeMapper(){}
@@ -24,7 +25,10 @@ public class RecipeMapper implements Mapper<Recipe,RecipeModel> {
         recipe.setCategory(validateNullOrEmpty(model.getCategory()));
         recipe.setCountry(validateNullOrEmpty(model.getCountry()));
         recipe.setInstruction(validateNullOrEmpty(model.getInstruction()));
-        recipe.setImgThumb(validateNullOrEmpty(model.getImgThumb()));
+        if(model.getImgThumb().startsWith(HTPP_FIELD))
+            recipe.setImgThumb(validateNullOrEmpty(model.getImgThumb()));
+        else
+            recipe.setImgThumb(HTPP_FIELD + validateNullOrEmpty(model.getImgThumb()));
         recipe.setYoutubeLink(validateNullOrEmpty(model.getYoutubeLink()));
         recipe.setIngredients(model.getIngredients());
         recipe.setMeasures(model.getMeasures());

@@ -23,5 +23,5 @@ public interface LatestDao {
     long insert(RecipeLatestVo favoriteVo);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<RecipeLatestVo> recipes);
+    List<Long> insertAll(List<RecipeLatestVo> recipes);
 }

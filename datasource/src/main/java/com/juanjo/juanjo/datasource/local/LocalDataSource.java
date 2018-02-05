@@ -48,8 +48,20 @@ public class LocalDataSource implements ILocalDataSource {
     }
 
     @Override
+    public Single<Boolean> saveLatest(List<RecipeModel> models) {
+        return Single.fromCallable(
+                () -> latestDao.insertAll(localRecipeTransformer.transformFromModel(models)).size() > 0 );
+    }
+
+    @Override
     public Observable<List<RecipeModel>> getRandomRecipes() {
         return Observable.fromCallable(() -> localRandomTransformer.transformList(randomDao.getRandoms()));
+    }
+
+    @Override
+    public Single<Boolean> saveRandom(List<RecipeModel> models) {
+        return Single.fromCallable(
+                () -> randomDao.insertAll(localRandomTransformer.transformFromModel(models)).size() > 0 );
     }
 
     @Override

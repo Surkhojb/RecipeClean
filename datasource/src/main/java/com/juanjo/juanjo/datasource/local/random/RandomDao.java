@@ -23,5 +23,5 @@ public interface RandomDao {
     long insert(RecipeRandomVo favoriteVo);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<RecipeRandomVo> recipes);
+    List<Long> insertAll(List<RecipeRandomVo> recipes);
 }

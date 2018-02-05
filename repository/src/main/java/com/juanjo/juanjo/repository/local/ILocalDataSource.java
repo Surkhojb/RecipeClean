@@ -15,7 +15,9 @@ import io.reactivex.Single;
 
 public interface ILocalDataSource {
     Observable<List<RecipeModel>> getLatestRecipes();
+    Single<Boolean> saveLatest(List<RecipeModel> models);
     Observable<List<RecipeModel>> getRandomRecipes();
+    Single<Boolean> saveRandom(List<RecipeModel> models);
     Observable<List<RecipeModel>> getFavoriteRecipes();
     Completable addToFavorites(RecipeModel model);
     Single<Boolean> removeFavorite(RecipeModel model);
