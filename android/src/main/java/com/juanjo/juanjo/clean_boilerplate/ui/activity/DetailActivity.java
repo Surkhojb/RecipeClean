@@ -67,6 +67,12 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
         loadDetailFromRecipe(recipe);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
     @OnClick(R.id.fab_favorite)
     public void onFabFavoriteClick(View v){
         presenter.addToFavorites(recipe);

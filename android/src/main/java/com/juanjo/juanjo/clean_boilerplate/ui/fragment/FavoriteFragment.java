@@ -87,6 +87,12 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentContra
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         eventBus.register(this);

@@ -70,6 +70,12 @@ public class RandomFragment extends Fragment implements RandomFragmentContract.V
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
+    }
+
+    @Override
     public void showLoading(boolean status) {
         if (status) {
             loadingIndicator.setVisibility(View.VISIBLE);

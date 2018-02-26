@@ -65,6 +65,12 @@ public class LatestFragment extends Fragment implements LatestFragmentContract.V
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
+    }
+
+    @Override
     public void showListOfRecipes(List<Recipe> recipes) {
         if (!recipes.isEmpty())
             recipeAdapter.refreshData(recipes);
