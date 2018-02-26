@@ -32,7 +32,7 @@ public class RecipeRepository implements IRecipeRepository{
         cloudResults = cloudDataSource.getLatestRecipes()
                 .doOnNext(models -> localDataSource.saveLatest(models));
 
-        return Observable.concat(dbResults,cloudResults);
+        return Observable.merge(dbResults,cloudResults);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class RecipeRepository implements IRecipeRepository{
         cloudResults = cloudDataSource.getRandomRecipes()
                 .doOnNext(models -> localDataSource.saveRandom(models));
 
-        return Observable.concat(dbResults,cloudResults);
+        return Observable.merge(dbResults,cloudResults);
     }
 
     @Override
