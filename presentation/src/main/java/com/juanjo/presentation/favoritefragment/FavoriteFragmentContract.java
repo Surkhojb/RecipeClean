@@ -22,5 +22,6 @@ public interface FavoriteFragmentContract {
     interface Presenter{
         void loadRecipes();
         void removeFromFavorite(Recipe recipe);
+        void onDestroy();
     }
 }

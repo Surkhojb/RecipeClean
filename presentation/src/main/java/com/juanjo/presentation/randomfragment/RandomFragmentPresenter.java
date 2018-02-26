@@ -51,6 +51,12 @@ public class RandomFragmentPresenter implements RandomFragmentContract.Presenter
                 AddToFavoritesUseCase.Params.create(transformer.transformToModel(recipe)));
     }
 
+    @Override
+    public void onDestroy() {
+        getRandom.dispose();
+        addFavorites.dispose();
+    }
+
     final class GetRandomObserver extends DefaultObserver<List<RecipeModel>> {
         @Override
         public void onNext(List<RecipeModel> models) {

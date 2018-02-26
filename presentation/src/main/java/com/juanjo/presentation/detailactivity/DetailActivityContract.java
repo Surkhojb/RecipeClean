@@ -16,5 +16,6 @@ public interface DetailActivityContract {
 
     interface Presenter{
         void addToFavorites(Recipe recipe);
+        void onDestroy();
     }
 }

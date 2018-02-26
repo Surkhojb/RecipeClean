@@ -35,6 +35,12 @@ public class LatestFragmentPresenter implements LatestFragmentContract.Presenter
         AddToFavoritesUseCase.Params.create(transformer.transformToModel(recipe)));
   }
 
+  @Override
+  public void onDestroy() {
+    getLatest.dispose();
+    addFavorites.dispose();
+  }
+
   final class GetLatestObserver extends DefaultObserver<List<RecipeModel>> {
     @Override public void onNext(List<RecipeModel> models) {
       view.showListOfRecipes(transformer.transform(models));

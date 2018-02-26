@@ -47,6 +47,12 @@ public class FavoriteFragmentPresenter implements FavoriteFragmentContract.Prese
                 RemoveToFavoritesUseCase.Params.create(transformer.transformToModel(recipe)));
     }
 
+    @Override
+    public void onDestroy() {
+        removeFavorite.dispose();
+        getFavorites.dispose();
+    }
+
     final class GetFavoriteObserver extends DefaultObserver<List<RecipeModel>>{
         @Override
         public void onNext(List<RecipeModel> models) {

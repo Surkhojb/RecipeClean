@@ -20,5 +20,6 @@ public interface LatestFragmentContract {
     interface Presenter{
         void loadRecipes();
         void addToFavorite(Recipe recipe);
+        void onDestroy();
     }
 }

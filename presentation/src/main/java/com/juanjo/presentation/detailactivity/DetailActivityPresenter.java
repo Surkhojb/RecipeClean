@@ -32,6 +32,11 @@ public class DetailActivityPresenter implements DetailActivityContract.Presenter
                 AddToFavoritesUseCase.Params.create(recipeMapper.inverseMap(recipe)));
     }
 
+    @Override
+    public void onDestroy() {
+        addToFavoritesUseCase.dispose();
+    }
+
     final class AddFavoritesObserver extends DefaultObserver<Completable> {
         @Override
         public void onNext(Completable completable) {

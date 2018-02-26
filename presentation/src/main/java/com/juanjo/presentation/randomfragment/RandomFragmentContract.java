@@ -21,5 +21,6 @@ public interface RandomFragmentContract {
         void loadRecipes();
         void loadOneMore();
         void addToFavorite(Recipe recipe);
+        void onDestroy();
     }
 }
